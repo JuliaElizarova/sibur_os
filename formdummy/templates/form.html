@@ -1,0 +1,269 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Сибур ОС</title>
+        <link rel="shortcut icon" href="{% static "image/icone.png" %}" type="image/x-icon">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+        <!--<link rel="stylesheet" type="text/css" href="{% static 'bootstrap/bootstrap.min.css' %}">-->
+        <script type="text/javascript" src="{% static 'js/jquery.slim.js' %}"></script>
+        <script type="text/javascript" src="{% static 'bootstrap/bootstrap.min.js' %}"></script>
+        <script type="text/javascript" src="{% static "js/main.js" %}"></script>
+        <script type="text/javascript" src="{% static "js/ajax.js" %}"></script>
+        <script  charset="utf-8" type="text/javascript">
+            function firstOKOF(event){
+                var context = JSON.parse("{{ context_json|escapejs }}");
+                //alert(context.text);
+                
+                let num = document.getElementsByTagName('select')[1].value; //зачение основного селекта первого уровня
+                let option_first_0 = document.getElementById('option-first-0').value;
+                let option_first_1 = document.getElementById('option-first-1').value;
+                let option_first_2 = document.getElementById('option-first-2').value;
+                let option_first_3 = document.getElementById('option-first-3').value;
+                let option_first_4 = document.getElementById('option-first-4').value;
+
+                let arr_options_first = [option_first_0, option_first_1, option_first_2, option_first_3, option_first_4]; //массив первых 5 наиболее вероятных значений для первой цифры [300, 210, 310]
+                
+                for (let i = 0; i < arr_options_first.length; i++){
+                    if (arr_options_first[i] === num){
+                        for (let key in context){
+                            if (('okof_2_' + arr_options_first[i] + '_0' === key) || ('okof_2_' + arr_options_first[i] + '_1' === key) || ('okof_2_' + arr_options_first[i] + '_2' === key) || ('okof_2_' + arr_options_first[i] + '_3' === context.key) || ('okof_2_' + arr_options_first[i] + '_4' === key)) {
+                                if (typeof context['okof_2_' + arr_options_first[i] + '_0'] == "undefined") {
+                                    document.getElementById('option-second-0').innerHTML = ''
+                                } else {
+                                    document.getElementById('option-second-0').innerHTML = context['okof_2_' + arr_options_first[i] + '_0']
+                                }
+                                if (typeof context['okof_2_' + arr_options_first[i] + '_1'] == "undefined") {
+                                    document.getElementById('option-second-1').innerHTML = ''
+                                } else {
+                                    document.getElementById('option-second-1').innerHTML = context['okof_2_' + arr_options_first[i] + '_1']
+                                }
+                                if (typeof context['okof_2_' + arr_options_first[i] + '_2'] == "undefined") {
+                                    document.getElementById('option-second-2').innerHTML = ''
+                                } else {
+                                    document.getElementById('option-second-2').innerHTML = context['okof_2_' + arr_options_first[i] + '_2']
+                                }
+                                if (typeof context['okof_2_' + arr_options_first[i] + '_3'] == "undefined") {
+                                    document.getElementById('option-second-3').innerHTML = ''
+                                } else {
+                                    document.getElementById('option-second-3').innerHTML = context['okof_2_' + arr_options_first[i] + '_3']
+                                }
+                                if (typeof context['okof_2_' + arr_options_first[i] + '_4'] == "undefined") {
+                                    document.getElementById('option-second-4').innerHTML = ''
+                                } else {
+                                    document.getElementById('option-second-4').innerHTML = context['okof_2_' + arr_options_first[i] + '_4']
+                                }
+                                break
+                            };
+                        }
+                    };
+                }
+
+
+                let num2 = document.getElementsByTagName('select')[2].value; //значение основного селекта второго уровня
+
+                let option_second_0 = document.getElementById('option-second-0').value;
+                let option_second_1 = document.getElementById('option-second-1').value;
+                let option_second_2 = document.getElementById('option-second-2').value;
+                let option_second_3 = document.getElementById('option-second-3').value;
+                let option_second_4 = document.getElementById('option-second-4').value;
+
+                let arr_options_second = [option_second_0, option_second_1, option_second_2, option_second_3, option_second_4]; //массив первых 5 наиболее вероятных значений для второй цифры
+                
+                let keys = Object.keys(context);
+
+                for (let i = 0; i < arr_options_second.length; i++){
+                    if (arr_options_second[i] === num2){
+                        for (let key in context){
+                            if (('okof_3_' + arr_options_second[i] + '_0' === key) || ('okof_3_' + arr_options_second[i] + '_1' === key) || ('okof_3_' + arr_options_second[i] + '_2' === key) || ('okof_3_' + arr_options_second[i] + '_3' === context.key) || ('okof_3_' + arr_options_second[i] + '_4' === key)) {
+
+                                if (typeof context['okof_3_' + arr_options_second[i] + '_0'] == "undefined") {
+                                    document.getElementById('option-third-0').innerHTML = ''
+                                } else {
+                                    document.getElementById('option-third-0').innerHTML = context['okof_3_' + arr_options_second[i] + '_0']
+                                }
+                                if (typeof context['okof_3_' + arr_options_second[i] + '_1'] == "undefined") {
+                                    document.getElementById('option-third-1').innerHTML = ''
+                                } else {
+                                    document.getElementById('option-third-1').innerHTML = context['okof_3_' + arr_options_second[i] + '_1']
+                                }
+                                if (typeof context['okof_3_' + arr_options_second[i] + '_2'] == "undefined") {
+                                    document.getElementById('option-third-2').innerHTML = ''
+                                } else {
+                                    document.getElementById('option-third-2').innerHTML = context['okof_3_' + arr_options_second[i] + '_2']
+                                }
+                                if (typeof context['okof_3_' + arr_options_second[i] + '_3'] == "undefined") {
+                                    document.getElementById('option-third-3').innerHTML = ''
+                                } else {
+                                    document.getElementById('option-third-3').innerHTML = context['okof_3_' + arr_options_second[i] + '_3']
+                                }
+                                if (typeof context['okof_3_' + arr_options_second[i] + '_4'] == "undefined") {
+                                    document.getElementById('option-third-4').innerHTML = ''
+                                } else {
+                                    document.getElementById('option-third-4').innerHTML = context['okof_3_' + arr_options_second[i] + '_4']
+                                }
+                                break
+
+                            } else if ((keys[keys.length - 1] === key) && ('okof_3_' + arr_options_second[i] + '_0' !== key) && ('okof_3_' + arr_options_second[i] + '_1' !== key) && ('okof_3_' + arr_options_second[i] + '_2' !== key) && ('okof_3_' + arr_options_second[i] + '_3' !== context.key) && ('okof_3_' + arr_options_second[i] + '_4' !== key)){
+                                document.getElementById('option-third-0').innerHTML = arr_options_second[i] + '.00'
+                                document.getElementById('option-third-1').innerHTML = ''
+                                document.getElementById('option-third-2').innerHTML = ''
+                                document.getElementById('option-third-3').innerHTML = ''
+                                document.getElementById('option-third-4').innerHTML = ''
+                            };
+                        }
+                    };
+                }
+                
+                
+                // Очищаем все поля в селекте
+                for (let i = 0; i < 10; i++) {
+                    document.getElementById('option-all-' + String(i)).innerHTML = ''
+                }
+
+
+                var context_json = JSON.parse("{{ context_json|escapejs }}"); //  словарь json со всеми кодами
+
+                let num3 = document.getElementsByTagName('select')[3].value; //значение основного селекта второго уровня
+                let context_json_for_js = context_json.context_json_for_js;
+                var count = 0;
+                for (let i = 0; i < context_json_for_js.length; i++){
+                    let f = context_json_for_js[i].substring(0, 9);
+                    if ((context_json_for_js[i].substring(0, 9) === num3) && (context_json_for_js[i].length === 11)){
+                        document.getElementById('option-all-' + String(count)).innerHTML = context_json_for_js[i]
+                        //document.getElementById('feedback-text5').innerHTML = context_json_for_js[key]
+                        count = count + 1
+                    } else if ((i === context_json_for_js.length - 1) && (context_json_for_js[i].substring(0, 9) !== num3)){;
+                        document.getElementById('option-all-' + String(count)).innerHTML = ''
+                        count = count + 1
+                    };
+                }  
+                
+
+                //подтягиваем описание кодов
+                /*for (let code in context) {
+                    let code_split = code.split('_');
+                    if ((code_split[0] === 'description') && (code_split.substring(0, 4) === num)) {
+                        document.getElementById("feedback-text2").innerHTML = dict_code(code)
+                        break
+                    };
+                } */
+
+            }
+        </script>
+ 
+    </head>
+    <body>
+        <div class="image">
+           <img class="img2" src="{% static "image/zavod_9-magic.jpg" %}" alt="Tyt' tipa cartinka, ALLOW" />
+        </div>
+        <h2>
+            <span style="font-family:helveticaneuew10-75bold,sans-serif;">Определите характеристики ОС</span>
+        </h2>
+        <div class="four_images_small"> 
+            <img class="image_small" src="{% static "image/comp.png" %}" width="150">
+            <img class="image_small" src="{% static "image/korova.png" %}" width="150">
+            <img class="image_small" src="{% static "image/instrum.png" %}" width="150">
+            <img class="image_small" src="{% static "image/sklad.png" %}" width="150">
+        </div>
+        <form method="POST" enctype="multipart/form-data" action="/form/"> <!--отправка данных в виде файла на этот адрес-->
+            {% csrf_token %}               
+            <!--{{ form }}-->
+            <br><br>
+            <center>
+                <label class="label1" for="feedback-text">Введите описание основного средства:<br><br></label>
+                <input id="feedback-text" type="text" name="text" placeholder="Большое здание" value="{{context.text}}" required>
+                <br><br><br>
+                <input id="feedback-submit" type="submit" value="Определить" name="okof_first">
+                <input id="feedback-submit" type="submit" value="Массовая загрузка" name="okof_mass" title="Загрузка файла Excel">
+                <br><br><br><br>
+                <img class="strelka" src="{% static "image/strelka.png" %}" width="80"><br><br>
+                <p><hr class="line1" /></p><br>
+                <b><label class="label2" for="feedback-text">Амортизационная группа:</label></b><br><br>
+                <select class="input2" name="ag" onchange="agChoice()">
+                    <option>{{context.text_0}}</option>
+                    <option value="{{text_1}}">{{context.text_1}}</option>
+                    <option>{{context.text_2}}</option>
+                    <option>{{context.text_3}}</option>
+                    <option>{{context.text_4}}</option>
+                    <option>{{context.text_5}}</option>
+                    <option>{{context.text_6}}</option>
+                    <option>{{context.text_7}}</option>
+                    <option>{{context.text_8}}</option>
+                    <option>{{context.text_9}}</option>
+                </select>&emsp;
+                <input class="input3" id="feedback-text1" type="text" name="ag-spi" value="{{context.ag_spi}}"><br><br>
+                <input id="button2" type="submit" value="Запомнить" name="okof_second">
+                <br><br><br>
+
+                <!--Указывает обработчик, к которому обращаются данные формы при их отправке на сервер-->
+                <label class="label2" for="feedback-text">Вид основного фонда:</label><br><br>
+                <select class="input2" name = "okof-first-level" onchange="firstOKOF()">
+                    <option id="option-first-0">{{context.okof_0}}</option>
+                    <option id="option-first-1">{{context.okof_1}}</option>
+                    <option id="option-first-2">{{context.okof_2}}</option>
+                    <option id="option-first-3">{{context.okof_3}}</option>
+                    <option id="option-first-4">{{context.okof_4}}</option>
+                </select>&emsp;
+                <input class="input2" id="prob_0" type="text" name="prob-okof-0" value="{{context.prob_okof_0}}">
+                <input class="input3" id="feedback-text2" type="text" name="okof-first-level-text">
+                <!--<input id="button3" type="submit" value="&#10003" name="okof_second">-->
+
+                <br><br>
+                <label class="label2" for="feedback-text">Раздел:</label><br><br>
+                <select class="input2" name = "okof-second-level" onchange="firstOKOF()">
+                    <option id="option-second-0">{{context.okof_2_0}}</option>
+                    <option id="option-second-1">{{context.okof_2_1}}</option>
+                    <option id="option-second-2">{{context.okof_2_2}}</option>
+                    <option id="option-second-3">{{context.okof_2_3}}</option>
+                    <option id="option-second-4">{{context.okof_2_4}}</option>
+                </select>&emsp;
+                <input class="input3" id="feedback-text3" type="text" name="okof-second-level-text">
+                <!--<input id="button3" type="submit" value="&#10003" name="okof_third">-->
+
+                <br><br>
+                <label class="label2" for="feedback-text">Подраздел:</label><br><br>
+                <select class="input2" name = "okof-third-level" onchange="firstOKOF()">
+                    <option id="option-third-0">{{context.okof_3_0}}</option>
+                    <option id="option-third-1">{{context.okof_3_1}}</option>
+                    <option id="option-third-2">{{context.okof_3_2}}</option>
+                    <option id="option-third-3">{{context.okof_3_3}}</option>
+                    <option id="option-third-4">{{context.okof_3_4}}</option>
+                </select>&emsp;
+                <input class="input3" id="feedback-text4" type="text" name="okof-third-level-text">
+                <!--<input id="button3" type="submit" value="&#10003" name="okof_all">-->
+
+                <br><br>
+                <b><label class="label2" for="feedback-text">Вид (итог):</label></b><br><br>
+                <select class="input2" name = "okof-all-level">
+                    <option id="option-all-0">{{context.okof_4_0}}</option>
+                    <option id="option-all-1">{{context.okof_4_1}}</option>
+                    <option id="option-all-2">{{context.okof_4_2}}</option>
+                    <option id="option-all-3">{{context.okof_4_3}}</option>
+                    <option id="option-all-4">{{context.okof_4_4}}</option>
+                    <option id="option-all-5">{{context.okof_4_5}}</option>
+                    <option id="option-all-6">{{context.okof_4_6}}</option>
+                    <option id="option-all-7">{{context.okof_4_7}}</option>
+                    <option id="option-all-8">{{context.okof_4_8}}</option>
+                    <option id="option-all-9">{{context.okof_4_9}}</option>
+                </select>&emsp;
+                <input class="input3" id="feedback-text5" type="text" name="okof-all-level-text"><br><br>
+                <input id="button2" type="submit" value="Запомнить" name="okof_all">
+
+                <br><br>
+                <p><hr class="line1" /></p><br>
+            </center>
+        </form>
+
+        <form id="vvod_hidden">	</form>
+        <div id="sl_tp">
+          <span>Наведи на меня</span>
+          <div id="sl_in">
+            <span class="panel" style="font-family:helveticaneuew10-75bold,sans-serif;"><b>Классификатор основных средств <br>Сибур ЦОБ</b>
+          </div>
+        </div>
+        <p class="contacts"><span class="panel"><b>Контакты</b></p>
+    </body>
+</html>
